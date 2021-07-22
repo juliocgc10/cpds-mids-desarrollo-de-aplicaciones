@@ -13,5 +13,21 @@ namespace Modulo1_ConsoleApp
             Console.WriteLine("Ejemplo de código C# en GitHub...");
             Console.ReadKey();
         }
+
+        public class Persona
+        {
+
+
+            private int edad;
+
+            public int Edad
+            {
+                get => edad;
+                set => edad = value;
+            }
+
+
+
+        }
     }
 }
