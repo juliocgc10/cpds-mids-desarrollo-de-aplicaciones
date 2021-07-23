@@ -66,7 +66,7 @@ namespace ConsoleAppPOO
             {
                 message = $"{message} Mi correo es: {this.Email}";
             }
-            NormalizationForm
+            
 
             return message;
 
