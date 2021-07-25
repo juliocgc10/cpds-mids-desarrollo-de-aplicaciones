@@ -1,0 +1,88 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Name="Name" Content="Nombre" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="SecondName" Content="Segundo nombre" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="LastName" Content="Apellidos" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="Birthday" Content="Fecha de nacimiento" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="RFC" Content="RFC" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="Email" Content="Correco electrónico" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="PhoneNumber" Content="Número teléfonico" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="Department" Content="Departamento" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="JobPosition" Content="Puesto" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Margin="5"/>
+
+            <Label Name="EmployeeNumber" Content="Número de empleado" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Margin="5" IsEnabled="False"/>
+            
+            <Label Name="JobPhoneNumber" Content="Número teléfonico oficina" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Margin="5" />
+
+            <Label Name="JobMail" Content="Correo electrónico oficina" Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <TextBox Grid.Column="0" Grid.Row="9" VerticalAlignment="Center" Margin="5" />
+
+            <Label Name="Password" Content="Contraseña" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            <PasswordBox Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Margin="5" />
+
+            <Grid Grid.Row="6" Grid.RowSpan="4" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Nuevo" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+                <Button Content="Editar" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+                <Button Content="Eliminar" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+                <Button Content="Guardar" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+                <Button Content="Cancelar" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Window>

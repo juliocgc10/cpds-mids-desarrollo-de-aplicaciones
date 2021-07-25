@@ -11,7 +11,7 @@ namespace ConsoleAppFiles
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Julio\Maestría CPDS\2do Semestre\MIDS105 DESARROLLO DE APLICACIONES Y XAMARIN\";
+            //string path = @"C:\Julio\Maestría CPDS\2do Semestre\MIDS105 DESARROLLO DE APLICACIONES Y XAMARIN\";
             //string path = @"C:\Julio\Maestría CPDS\2do Semestre\MIDS105 DESARROLLO DE APLICACIONES Y XAMARIN\test";
             //Writefile();
             //ReadFile();
