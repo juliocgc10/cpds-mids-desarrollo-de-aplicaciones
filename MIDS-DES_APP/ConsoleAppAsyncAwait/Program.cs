@@ -11,8 +11,8 @@ namespace ConsoleAppAsyncAwait
     {
         static void Main(string[] args)
         {
-            //Longrunning();
-            GetData();
+            Longrunning();
+            //GetData();
 
             Console.WriteLine("Fin de la ejecución");
             Console.ReadKey();

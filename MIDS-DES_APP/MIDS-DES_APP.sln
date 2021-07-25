@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp_MultiTask", "Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppAsyncAwait", "ConsoleAppAsyncAwait\ConsoleAppAsyncAwait.csproj", "{8D4A9D17-9614-4FCD-917D-120C7E4387A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modulo_1.5.1_Files", "Modulo_1.5.1_Files", "{41A83D40-376D-4DC1-9B3E-9171371129EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppFiles", "ConsoleAppFiles\ConsoleAppFiles.csproj", "{BDC02570-1477-4F6F-B1CF-735ED6AD26CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{8D4A9D17-9614-4FCD-917D-120C7E4387A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D4A9D17-9614-4FCD-917D-120C7E4387A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D4A9D17-9614-4FCD-917D-120C7E4387A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC02570-1477-4F6F-B1CF-735ED6AD26CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC02570-1477-4F6F-B1CF-735ED6AD26CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC02570-1477-4F6F-B1CF-735ED6AD26CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC02570-1477-4F6F-B1CF-735ED6AD26CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{51080A5D-9776-46B5-9EF7-7ECE13EEA006} = {F9F5C81E-8612-4FB3-9064-4FA03CB8D72E}
 		{2E256404-3D9B-427A-A7C9-F634CF3F4E74} = {EF51E5FC-76B3-443A-B341-FAC9471657B2}
 		{8D4A9D17-9614-4FCD-917D-120C7E4387A8} = {EF51E5FC-76B3-443A-B341-FAC9471657B2}
+		{BDC02570-1477-4F6F-B1CF-735ED6AD26CD} = {41A83D40-376D-4DC1-9B3E-9171371129EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32CDD1A3-4BE9-4EEE-82DF-681C67FCD7D6}
