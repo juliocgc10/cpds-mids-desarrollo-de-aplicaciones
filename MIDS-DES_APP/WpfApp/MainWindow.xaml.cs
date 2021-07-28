@@ -23,6 +23,18 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
+            //RegistrationViewModel registrationViewModel = new RegistrationViewModel();
+            //this.DataContext = registrationViewModel;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            RegistrationViewModel rgvm = ((RegistrationViewModel)this.DataContext);
+
+            if (rgvm != null)
+            {
+                ((RegistrationViewModel)DataContext).Employee.Password = this.Password.Password;
+            }
         }
     }
 }
