@@ -132,12 +132,63 @@ namespace WpfApp
             NewEmployeeCommand = new ExecutionCommand(NewEmployee);
             SaveEmployeeCommand = new ExecutionCommand(SaveEmployee);
             this.SelectedIndex = -1;
+            GetEmployees();
         }
         #endregion
 
         #region Methods
+        private void GetEmployees()
+        {
+            Employees = new ObservableCollection<Employee>();
+            using (DataContext.CPDSEntities context = new DataContext.CPDSEntities())
+            {
+                //var resultQuery = from emp in context.Employee select new { emp.Birthday };
 
+                foreach (var item in context.Employee)
+                {
+                    Employees.Add(new Employee()
+                    {
+                        Birthday = item.Birthday,
+                        Department = item.Department,
+                        Email = item.Email,
+                        EmployeeNumber = item.EmployeeID.ToString(),
+                        JobEmail = item.JobEmail,
+                        JobPhoneNumber = item.JobPhoneNumber,
+                        JobPosition = item.JobPosition,
+                        LastName = item.LastName,
+                        Name = item.Name,
+                        Password = item.Password,
+                        PhoneNumber = item.PhoneNumber,
+                        Rfc = item.RFC,
+                        SecondName = item.SecondName
+                    });
+                }
+            }
 
+            OnPropertyChanged("Employees");
+        }
+        private void InsertEmployee()
+        {
+            using (WpfApp.DataContext.CPDSEntities context = new WpfApp.DataContext.CPDSEntities())
+            {
+                context.Employee.Add(new DataContext.Employee()
+                {
+                    Birthday = employee.Birthday,
+                    Department = employee.Department,
+                    Email = employee.Email,
+                    JobEmail = employee.JobEmail,
+                    JobPhoneNumber = employee.JobPhoneNumber,
+                    JobPosition = employee.JobPosition,
+                    LastName = employee.LastName,
+                    Name = employee.Name,
+                    Password = employee.Password,
+                    PhoneNumber = employee.PhoneNumber,
+                    RFC = employee.Rfc,
+                    SecondName = employee.SecondName
+                });
+                context.SaveChanges();
+            }
+        }
         private void EnabledEdition()
         {
             this.NewButtonVisibility = false;
@@ -165,9 +216,10 @@ namespace WpfApp
         }
         private void SaveEmployee()
         {
-            Employees.Add(this.Employee);
+            InsertEmployee();
             Employee = new Employee();
             DisabledEdition();
+            GetEmployees();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

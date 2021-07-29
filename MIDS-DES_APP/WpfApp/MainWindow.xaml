@@ -39,7 +39,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Name="Name" Content="Nombre" Grid.Column="0" Grid.Row="0" Style="{StaticResource FormLabelStyleDos}" VerticalAlignment="Center" />
+            <Label Name="Name" Content="Nombre" Grid.Column="0" Grid.Row="0" Style="{StaticResource FormLabelStyle}" VerticalAlignment="Center" />
             <TextBox Grid.Column="0" Grid.Row="1" IsEnabled="{Binding Path=IsEnabledControl,Mode=OneWay}" Text="{Binding Path=Employee.Name, Mode=TwoWay}" Style="{StaticResource GeneralTextBoxStyle}"/>
 
             <Label Name="SecondName" Content="Segundo nombre" Grid.Column="1" Grid.Row="0" Style="{StaticResource FormLabelStyle}" />
