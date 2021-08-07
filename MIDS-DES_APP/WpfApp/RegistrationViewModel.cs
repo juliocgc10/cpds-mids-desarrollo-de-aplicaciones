@@ -16,7 +16,7 @@ namespace WpfApp
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
-
+        
         #region Fields
         private bool newButtonVisibility;
         private bool editButtonvisibility;
@@ -102,7 +102,7 @@ namespace WpfApp
         }
 
         public ObservableCollection<Employee> Employees { get; set; }
-
+        
         public ICommand NewEmployeeCommand { get; set; }
         public ICommand SaveEmployeeCommand { get; set; }
         public int SelectedIndex
