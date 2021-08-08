@@ -17,6 +17,43 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style x:Key="NameLabel" x:Name="NameLabel" TargetType="Label">
+                <Setter  Property="FontSize" Value="14"/>
+                <Setter  Property="TextColor" Value="Black"/>
+                <Setter  Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="LabelStyle" x:Name="LabelStyle" TargetType="Label">
+                <Setter  Property="FontSize" Value="12"/>
+            </Style>
+            <Style x:Key="JobTitleLabelStyle" x:Name="JobTitleLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter  Property="VerticalTextAlignment" Value="Center"/>
+                <Setter  Property="VerticalOptions" Value="Center"/>
+                <Setter  Property="FontAttributes" Value="Bold"/>
+                <Setter  Property="TextColor" Value="Gray"/>
+            </Style>
+            <Style x:Key="ImageLabelStackLayout" x:Name="ImageLabelStackLayout" TargetType="StackLayout" >
+                <Setter  Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style x:Key="DetailsStackLayout" x:Name="DetailsStackLayout" TargetType="StackLayout" >
+                <Setter  Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter  Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter  Property="Spacing" Value="2"/>
+            </Style>
+            <Style x:Key="imageStyle" x:Name="imageStyle" TargetType="Image">
+                <Setter  Property="WidthRequest" Value="26"/>
+                <Setter  Property="HeightRequest" Value="26"/>
+            </Style>
+            <Style x:Key="profileImageStyle" x:Name="profileImageStyle" TargetType="Image">
+                <Setter  Property="WidthRequest" Value="80"/>
+                <Setter  Property="HeightRequest" Value="60"/>
+                <Setter  Property="Aspect" Value="Fill"/>
+            </Style>
+            <Style x:Key="profileImageFrameStyle" x:Name="profileImageFrameStyle" TargetType="Frame">
+                <Setter  Property="CornerRadius" Value="5"/>
+                <Setter  Property="Margin" Value="0"/>
+                <Setter  Property="Padding" Value="0"/>
+                <Setter  Property="IsClippedToBounds" Value="True"/>
+            </Style>
             <Style x:Key="FrameCardViewStyle" x:Name="FrameCardViewStyle" TargetType="Frame">
                 <Setter  Property="CornerRadius" Value="5"/>
                 <Setter  Property="Margin" Value="5"/>
@@ -25,114 +62,68 @@
                 <Setter  Property="HasShadow" Value="True"/>
                 <Setter  Property="BorderColor" Value="Linen"/>
             </Style>
-            <Style x:Key="profileImageFrameStyle" x:Name="profileImageFrameStyle" TargetType="Frame">
-                <Setter  Property="CornerRadius" Value="5"/>
-                <Setter  Property="Margin" Value="0"/>
-                <Setter  Property="Padding" Value="0"/>
-                <Setter  Property="IsClippedToBounds" Value="True"/>
+            <Style x:Key="ItemsCardViewStackLayoutStyle" x:Name="ItemsCardViewStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
-            <Style x:Key="profileImageStyle" x:Name="profileImageStyle" TargetType="Image">
-                <Setter  Property="WidthRequest" Value="80"/>
-                <Setter  Property="HeightRequest" Value="60"/>
-                <Setter  Property="Aspect" Value="Fill"/>
-            </Style>
-
-            <Style x:Key="imageStyle" x:Name="imageStyle" TargetType="Image">
-                <Setter  Property="WidthRequest" Value="15"/>
-                <Setter  Property="HeightRequest" Value="15"/>
+            <Style x:Key="ItemsInsideCardViewStackLayoutStyle" x:Name="ItemsInsideCardViewStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="8"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
+        <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
+                SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Style="{StaticResource FrameCardViewStyle}">
-                        <StackLayout Orientation="Vertical" Margin="5" x:DataType="model:Item">
-                            <Grid Margin="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                    <RowDefinition Height="auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                
-                                <Frame Style="{StaticResource profileImageFrameStyle}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
-                                    <Image Style="{StaticResource profileImageStyle}" Source="icon_user_2.png"/>
-                                </Frame>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Consultar"/>
+                            <MenuItem Text="Editar"/>
+                            <MenuItem Text="Eliminar"/>
+                            <MenuItem Text="LLamar"/>
+                            <MenuItem Text="Enviar Email"/>
+                        </ViewCell.ContextActions>
+                        <Frame Style="{StaticResource FrameCardViewStyle}">
+                            <StackLayout Style="{StaticResource ItemsCardViewStackLayoutStyle}">
+                                <StackLayout x:DataType="model:Item" Style="{StaticResource ItemsInsideCardViewStackLayoutStyle}">
+                                    <Frame Style="{StaticResource profileImageFrameStyle}">
+                                        <Image Style="{StaticResource profileImageStyle}" Source="icon_user_1.png"/>
+                                    </Frame>
 
-                                <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Grid.Column="1" Grid.Row="0" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                                    <StackLayout Style="{StaticResource DetailsStackLayout}">
+                                        <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource NameLabel}" />
 
-                                <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                                    <Image Source="icon_id_2.png" Style="{StaticResource imageStyle}"/>
-                                    <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="16"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
-                                    <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
-                                    <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="16"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
-                                    <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
-                                    <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="16"/>
-                                </StackLayout>
-
-                            </Grid>
-                            <StackLayout.GestureRecognizers>
+                                        <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                                            <Image Source="icon_id_2.png" Style="{StaticResource imageStyle}"/>
+                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource JobTitleLabelStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                                            <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
+                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                                            <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
+                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                        <!--<StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                                 </TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </Frame>
-                    <!--<StackLayout Padding="10" x:DataType="model:Item" Orientation="Vertical" >
-                       
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Nombre: " LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                            <Label Text="{Binding Path=Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Correo electrónico: " LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                            <Label Text="{Binding Path=Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Departamento: " LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                            <Label Text="{Binding Path=Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Puesto: " LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                            <Label Text="{Binding Path=Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Email Oficina: " LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                            <Label Text="{Binding Path=Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center" FontSize="13"/>
-                        </StackLayout>-->
-                    <!--<Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />-->
-                    <!--<StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                        </StackLayout>-->
+                            </StackLayout.GestureRecognizers>-->
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </Frame>
+                    </ViewCell>
+                    
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </ListView.ItemTemplate>
+        </ListView>
     </RefreshView>
 </ContentPage>

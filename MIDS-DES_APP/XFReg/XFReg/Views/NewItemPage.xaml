@@ -3,20 +3,142 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XFReg.Views.NewItemPage"
              Shell.PresentationMode="ModalAnimated"
-             Title="New Item"
+             Title="Registro empleado"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
+
+    <ContentPage.Resources>
+        <Style x:Key="NameLabel" x:Name="NameLabel" TargetType="Label">
+            <Setter  Property="FontSize" Value="14"/>
+            <Setter  Property="TextColor" Value="Black"/>
+            <Setter  Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ImageLabelStackLayout" x:Name="ImageLabelStackLayout" TargetType="StackLayout" >
+            <Setter  Property="Orientation" Value="Vertical"/>
+        </Style>
+        <Style x:Key="imageStyle" x:Name="imageStyle" TargetType="Image">
+            <Setter  Property="WidthRequest" Value="26"/>
+            <Setter  Property="HeightRequest" Value="26"/>
+        </Style>
+        <Style x:Key="EntryStyle" x:Name="EntryStyle" TargetType="Entry">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Nombre" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Segundo Nombre" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Apellidos" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_rfc.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Fecha de Nacimiento" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <DatePicker/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_rfc.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="RFC" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Correo eletrónico personal" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="# teléfonico personal" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_company.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Departamento" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_puesto.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Puesto" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="# teléfonico oficina" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Correo electrónico oficina" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+                <!--<StackLayout Style="{StaticResource ImageLabelStackLayout}">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_user_1.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Usuario" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>-->
+                <StackLayout Style="{StaticResource ImageLabelStackLayout}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_password.png" Style="{StaticResource imageStyle}"/>
+                        <Label Text="Contraseña" Style="{StaticResource NameLabel}"/>
+                    </StackLayout>
+                    <Entry Style="{StaticResource EntryStyle}"/>
+                </StackLayout>
+
+                <!--<Label Text="Text" FontSize="Medium" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+                <Label Text="Description" FontSize="Medium" />
+                <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />-->
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
-    
+
 </ContentPage>
