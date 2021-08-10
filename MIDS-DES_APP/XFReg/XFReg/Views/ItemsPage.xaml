@@ -4,7 +4,9 @@
              x:Class="XFReg.Views.ItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:XFReg.ViewModels"  
-             xmlns:model="clr-namespace:XFReg.Models"  
+             xmlns:model="clr-namespace:XFReg.Models" 
+             xmlns:vm="clr-namespace:XFReg.ViewModels"
+             xmlns:modeldos="clr-namespace:XFReg.Entities;assembly=XFReg.Entities"
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
@@ -17,6 +19,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <vm:ItemsViewModel x:Key="ItemsViewModel" x:Name="ItemsViewModel"/>
             <Style x:Key="NameLabel" x:Name="NameLabel" TargetType="Label">
                 <Setter  Property="FontSize" Value="14"/>
                 <Setter  Property="TextColor" Value="Black"/>
@@ -72,56 +75,65 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+    <ContentPage.BindingContext>
+        <StaticResource Key="ItemsViewModel"/>
+    </ContentPage.BindingContext>
+    <!---->
+    <RefreshView x:DataType="local:ItemsViewModel"  Command="{Binding LoadEmployeesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <!--SelectionMode="None"-->
         <ListView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
+                ItemsSource="{Binding Employees, Mode=TwoWay}"                 
+                  HasUnevenRows="True" SeparatorVisibility="None" >
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="modeldos:Employee">
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Consultar"/>
-                            <MenuItem Text="Editar"/>
-                            <MenuItem Text="Eliminar"/>
+                            <MenuItem Text="Consultar" Command="{Binding Path=EditEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>
+                            <!--<MenuItem Text="Editar"/>-->
+                            <MenuItem Text="Eliminar"  Command="{Binding Path=DeleteEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>                          
                             <MenuItem Text="LLamar"/>
                             <MenuItem Text="Enviar Email"/>
                         </ViewCell.ContextActions>
                         <Frame Style="{StaticResource FrameCardViewStyle}">
                             <StackLayout Style="{StaticResource ItemsCardViewStackLayoutStyle}">
-                                <StackLayout x:DataType="model:Item" Style="{StaticResource ItemsInsideCardViewStackLayoutStyle}">
+                                <!--<StackLayout x:DataType="modeldos:Employee" Style="{StaticResource ItemsInsideCardViewStackLayoutStyle}">-->
+                                <StackLayout Style="{StaticResource ItemsInsideCardViewStackLayoutStyle}">
                                     <Frame Style="{StaticResource profileImageFrameStyle}">
-                                        <Image Style="{StaticResource profileImageStyle}" Source="icon_user_1.png"/>
+                                        <Image Style="{StaticResource profileImageStyle}" Source="{Binding Path=PhotoUrl}"/>
                                     </Frame>
 
                                     <StackLayout Style="{StaticResource DetailsStackLayout}">
-                                        <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource NameLabel}" />
+                                        <Label Text="{Binding Path=FullName}" LineBreakMode="NoWrap" Style="{StaticResource NameLabel}" />
 
                                         <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                                             <Image Source="icon_id_2.png" Style="{StaticResource imageStyle}"/>
-                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource JobTitleLabelStyle}"/>
+                                            <Label Text="{Binding Path=EmployeeNumber}" LineBreakMode="NoWrap" Style="{StaticResource JobTitleLabelStyle}"/>
                                         </StackLayout>
                                         <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                                             <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
-                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
+                                            <Label Text="{Binding Path=Email}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
                                         </StackLayout>
                                         <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                                             <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
-                                            <Label Text="{Binding Path=Text}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
+                                            <Label Text="{Binding Path=PhoneNumber}" LineBreakMode="NoWrap" Style="{StaticResource LabelStyle}" />
                                         </StackLayout>
+
+
                                         <!--<StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                </TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>-->
+                                            <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=EditEmployeeCommand}"		
+                                    CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>-->
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
 
                         </Frame>
                     </ViewCell>
-                    
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

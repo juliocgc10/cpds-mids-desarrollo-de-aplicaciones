@@ -27,6 +27,11 @@ namespace XFReg.Views
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
+
+            if ((this.BindingContext as ItemsViewModel).Employees.Count == 0)
+            {
+                _viewModel.IsBusy = true;
+            }
         }
     }
 }

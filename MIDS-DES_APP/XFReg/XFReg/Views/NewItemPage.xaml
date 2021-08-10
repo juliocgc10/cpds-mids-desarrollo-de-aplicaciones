@@ -4,7 +4,8 @@
              x:Class="XFReg.Views.NewItemPage"
              Shell.PresentationMode="ModalAnimated"
              Title="Registro empleado"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:viewmodels="clr-namespace:XFReg.ViewModels" x:DataType="viewmodels:NewItemViewModel"
              ios:Page.UseSafeArea="true">
 
     <ContentPage.Resources>
@@ -35,7 +36,7 @@
                         <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Nombre" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.Name, Mode=TwoWay}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
@@ -43,7 +44,7 @@
                         <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Segundo Nombre" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.SecondName, Mode=TwoWay}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
@@ -51,7 +52,7 @@
                         <Image Source="icon_nombre_1.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Apellidos" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.LastName, Mode=TwoWay}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
@@ -59,7 +60,7 @@
                         <Image Source="icon_rfc.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Fecha de Nacimiento" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <DatePicker/>
+                    <DatePicker Date="{Binding Path=Employee.Birthday, Mode=TwoWay}" />
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                     <StackLayout Orientation="Horizontal">
@@ -67,7 +68,7 @@
                         <Label Text="RFC" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
 
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.Rfc, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
 
@@ -75,21 +76,21 @@
                         <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Correo eletrónico personal" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.Email, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                     <StackLayout Orientation="Horizontal">
                         <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="# teléfonico personal" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.PhoneNumber, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                     <StackLayout Orientation="Horizontal">
                         <Image Source="icon_company.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Departamento" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.Department, Mode=TwoWay}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
@@ -97,21 +98,21 @@
                         <Image Source="icon_puesto.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Puesto" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.JobPosition, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                     <StackLayout Orientation="Horizontal">
                         <Image Source="icon_phone.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="# teléfonico oficina" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.JobPhoneNumber, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout Style="{StaticResource ImageLabelStackLayout}">
                     <StackLayout Orientation="Horizontal">
                         <Image Source="icon_email.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Correo electrónico oficina" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.JobEmail, Mode=TwoWay}"/>
                 </StackLayout>
                 <!--<StackLayout Style="{StaticResource ImageLabelStackLayout}">
 
@@ -126,13 +127,10 @@
                         <Image Source="icon_password.png" Style="{StaticResource imageStyle}"/>
                         <Label Text="Contraseña" Style="{StaticResource NameLabel}"/>
                     </StackLayout>
-                    <Entry Style="{StaticResource EntryStyle}"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding Path=Employee.Password, Mode=TwoWay}"/>
                 </StackLayout>
 
-                <!--<Label Text="Text" FontSize="Medium" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-                <Label Text="Description" FontSize="Medium" />
-                <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />-->
+              
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                     <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

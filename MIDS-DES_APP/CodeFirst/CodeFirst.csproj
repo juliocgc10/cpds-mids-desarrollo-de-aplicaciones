@@ -53,65 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext\DemoDBDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DemoDBDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataContext\DemoDBDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DemoDBDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataContext\DemoDBDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DemoDBDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataContext\Employee.cs">
-      <DependentUpon>DemoDBDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DemoDBDataContext.cs" />
     <Compile Include="Employee.cs" />
-    <Compile Include="Migrations\202107282232431_DemoDBMigration.cs" />
-    <Compile Include="Migrations\202107282232431_DemoDBMigration.designer.cs">
-      <DependentUpon>202107282232431_DemoDBMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DataContext\DemoDBDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DemoDBDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataContext\DemoDBDataModel.edmx.diagram">
-      <DependentUpon>DemoDBDataModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107282232431_DemoDBMigration.resx">
-      <DependentUpon>202107282232431_DemoDBMigration.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataContext\DemoDBDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DemoDBDataModel.edmx</DependentUpon>
-      <LastGenOutput>DemoDBDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataContext\DemoDBDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DemoDBDataModel.edmx</DependentUpon>
-      <LastGenOutput>DemoDBDataModel.cs</LastGenOutput>
-    </Content>
+    <Folder Include="DataContext\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

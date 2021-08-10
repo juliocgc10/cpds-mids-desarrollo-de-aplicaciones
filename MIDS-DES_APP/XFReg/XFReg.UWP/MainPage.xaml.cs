@@ -22,6 +22,7 @@ namespace XFReg.UWP
             this.InitializeComponent();
 
             LoadApplication(new XFReg.App());
+            Acr.UserDialogs.UserDialogs.Init();
         }
     }
 }
