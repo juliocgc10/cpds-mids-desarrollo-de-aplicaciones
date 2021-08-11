@@ -91,9 +91,9 @@
                         <ViewCell.ContextActions>
                             <MenuItem Text="Consultar" Command="{Binding Path=EditEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>
                             <!--<MenuItem Text="Editar"/>-->
-                            <MenuItem Text="Eliminar"  Command="{Binding Path=DeleteEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>                          
-                            <MenuItem Text="LLamar"/>
-                            <MenuItem Text="Enviar Email"/>
+                            <MenuItem Text="Eliminar"  Command="{Binding Path=DeleteEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="LLamar" Command="{Binding Path=CallEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="Enviar Email" Command="{Binding Path=SendEmailEmployeeCommand, Source={StaticResource ItemsViewModel}}" CommandParameter="{Binding .}"/>
                         </ViewCell.ContextActions>
                         <Frame Style="{StaticResource FrameCardViewStyle}">
                             <StackLayout Style="{StaticResource ItemsCardViewStackLayoutStyle}">

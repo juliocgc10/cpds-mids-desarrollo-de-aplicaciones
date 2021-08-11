@@ -1,11 +1,12 @@
 ﻿using Acr.UserDialogs;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XFReg.Entities;
 using XFReg.Models;
@@ -35,6 +36,8 @@ namespace XFReg.ViewModels
 
         public Command DeleteEmployeeCommand { get; }
         public Command EditEmployeeCommand { get; }
+        public Command CallEmployeeCommand { get; }
+        public Command SendEmailEmployeeCommand { get; }
         #endregion
 
         #region Constructors
@@ -49,9 +52,15 @@ namespace XFReg.ViewModels
             AddItemCommand = new Command(OnAddItem);
             DeleteEmployeeCommand = new Command(async (emp) => await DeleteEmployee((Employee)emp));
             EditEmployeeCommand = new Command<Employee>(OnEditEmployee);
+            CallEmployeeCommand = new Command<Employee>(async (emp) => await OnCallEmployee(emp));
+            SendEmailEmployeeCommand = new Command<Employee>(async (emp) => await OnSendEmailEmployee(emp));
         }
 
-        
+
+
+
+
+
         #endregion
 
         private async Task ExecuteLoadEmployeesCommand()
@@ -71,11 +80,6 @@ namespace XFReg.ViewModels
                     Employees = JsonConvert.DeserializeObject<ObservableCollection<Employee>>(webEmployees);
                 }
 
-                //var items = await DataStore.GetItemsAsync(true);
-                //foreach (var item in items)
-                //{
-                //    Employees.Add(item);
-                //}
             }
             catch (Exception ex)
             {
@@ -84,6 +88,56 @@ namespace XFReg.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        private async Task OnCallEmployee(Employee obj)
+        {
+            var confirm = new ConfirmConfig()
+            {
+                Message = $"¿Está seguro de llamar a {obj.FullName}",
+                Title = $"Llamar a {obj.FullName}",
+                OkText = "Aceptar",
+                CancelText = "cancelar"
+            };
+
+            var result = await UserDialogs.Instance.ConfirmAsync(confirm);
+            if (result)
+            {
+                await Launcher.OpenAsync(new Uri($"tel:{obj.PhoneNumber}"));
+            }
+
+        }
+
+        private async Task OnSendEmailEmployee(Employee obj)
+        {
+            var confirm = new ConfirmConfig()
+            {
+                Message = $"¿Está seguro de enviar un correo a {obj.FullName}",
+                Title = $"Enviar correo a {obj.FullName}",
+                OkText = "Aceptar",
+                CancelText = "cancelar"
+            };
+            
+            var result = await UserDialogs.Instance.ConfirmAsync(confirm);
+            if (result)
+            {
+                EmailMessage msg = new EmailMessage()
+                {
+                    Subject = "Correo de prueba",
+                    Body = "Este es un correo de prueba desde xamarin",
+                    To = new List<string>() { obj.Email },
+
+                };
+                await Email.ComposeAsync(msg);
+            }
+        }
+
+        private void OnActionconfirm(bool obj)
+        {
+            if (obj)
+            {
+
             }
         }
 
@@ -142,18 +196,10 @@ namespace XFReg.ViewModels
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
+
+
         private async Task DeleteEmployee(Object employee)
         {
-
-            //await ExecuteLoadEmployeesCommand();
-            //UserDialogs.Instance.Alert(new AlertConfig()
-            //{
-            //    Message = "Se elimino correctamente",
-            //    OkText = "Aceptar",
-            //    Title = "Empleado eliminado"
-            //});
-            //await Shell.Current.GoToAsync("..");
-            
 
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.DeleteAsync($"https://dev-app-mids.azurewebsites.net/api/Employee/{(employee as Employee).EmployeeNumber}");
