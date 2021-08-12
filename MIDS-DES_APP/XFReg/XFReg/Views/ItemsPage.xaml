@@ -11,6 +11,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Agregar" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Log de actividades" Clicked="ViewLogActivities_Clicked" />
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFReg.Views.MapView"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <maps:Map x:Name="map" MapType="Street">
+                <!--<x:Arguments>
+                    <maps:MapSpan>
+                        <x:Arguments>
+                            <maps:Position>
+                                <x:Arguments>
+                                    <x:Double>36.9628066</x:Double>
+                                    <x:Double>-122.0194722</x:Double>
+                                </x:Arguments>
+                            </maps:Position>
+                            <x:Double>0.01</x:Double>
+                            <x:Double>0.01</x:Double>
+                        </x:Arguments>
+                    </maps:MapSpan>
+
+                </x:Arguments>-->
+            </maps:Map>
+            <StackLayout Orientation="Horizontal" Margin="5" Spacing="15" Padding="20" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+                <Button Text="Street" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" Clicked="StreetMap_Clicked"/>
+                <Button Text="Hybrid" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50" Clicked="HibrydMap_Clicked"/>
+                <Button Text="Satellite" VerticalOptions="Center" HorizontalOptions="StartAndExpand" HeightRequest="50" Clicked="SatelliteMap_Clicked" />
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
